@@ -1,5 +1,5 @@
 import React from 'react';
-import Aux from '../../../hoc2/Aux';
+import Aux2 from '../../../hoc2/Aux2';
 
 const orderSummary = (props) => {
     const ingredientSummary = Object.keys(props.ingredients)
@@ -11,14 +11,14 @@ const orderSummary = (props) => {
             ) 
         });
     return(
-        <Aux>
+        <Aux2>
             <h3>Your Order</h3>
             <p>A delicious burger with the following ingredients:</p>
             <ul>
                 {ingredientSummary}
             </ul>
             <p>Continue to checkout?</p>
-        </Aux>
+        </Aux2>
     );
 };
 
