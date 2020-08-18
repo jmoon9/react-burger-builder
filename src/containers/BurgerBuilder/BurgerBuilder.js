@@ -11,7 +11,7 @@ import withErrorHandler from '../../hoc2/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions';
 import axios from '../../axios-orders';
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
     state = {
         purchasing: false,
         loading: false,
@@ -23,8 +23,8 @@ class BurgerBuilder extends Component {
     }
 
     updatePurchaseState (ingredients) {
-        
-        const sum = Object.keys(ingredients)
+        if(ingredients){
+            const sum = Object.keys(ingredients)
             .map(igKey => {
                 return ingredients[igKey];
             })
@@ -32,7 +32,8 @@ class BurgerBuilder extends Component {
                 return sum + el;
             }, 0);
 
-        return sum > 0;
+            return sum > 0;
+        }
     }
 
     purchaseHandler = () => {
