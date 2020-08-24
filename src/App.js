@@ -11,9 +11,11 @@ import Logout from "./containers/Auth/Logout/Logout";
 import * as actions from "./store/actions";
 
 const app = (props) => {
+  const { onTryAutoSignup } = props;
+
   useEffect(() => {
-    props.onTryAutoSignup();
-  }, []);
+    onTryAutoSignup();
+  }, [onTryAutoSignup]);
 
   let routes = (
     <Switch>

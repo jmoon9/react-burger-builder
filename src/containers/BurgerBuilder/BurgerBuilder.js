@@ -13,15 +13,12 @@ import axios from '../../axios-orders';
 
 const burgerBuilder = props => {
     const [ purchasing, setPurchasing ] = useState(false);
-    // state = {
-    //     purchasing: false,
-    //     loading: false,
-    //     error: false
-    // }
+    
+    const { onInitIngredients } = props;
 
     useEffect(() => {
-        props.onInitIngredients();
-    }, []) 
+        onInitIngredients();
+    }, [onInitIngredients]) 
 
     const updatePurchaseState = (ingredients) => {
         
