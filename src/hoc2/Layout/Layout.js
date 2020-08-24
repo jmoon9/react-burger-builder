@@ -1,38 +1,33 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Aux2 from '../Aux2/Aux2';
 import classes from './Layout.css';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 
-class Layout extends Component{
-    state ={
-        showSideDrawer: false
-    }
+const layout = props => {
+    const [ sideDrawerisVisible, setSideDrawerVisible ] = useState(false);
 
-    sideDrawerClosedHandler = () => {
-        this.setState({showSideDrawer: false})
+    const sideDrawerClosedHandler = () => {
+        setSideDrawerVisible(false);
     }
     
-    sideDrawerToggleHandler = () => {
-        this.setState( ( prevState ) => {
-            return {showSideDrawer: !prevState.showSideDrawer };
-        });
+    const sideDrawerToggleHandler = () => {
+        setSideDrawerVisible(!sideDrawerisVisible);
     }
 
-    render () {
-        return(
-            <Aux2>
-                <Toolbar 
-                    isAuth={this.props.isAuthenticated}
-                    opened={this.sideDrawerToggleHandler}/>
-                <SideDrawer isAuth={this.props.isAuthenticated} open={this.state.showSideDrawer} closed={this.sideDrawerClosedHandler}/>
-                <main className={classes.Content}>
-                    {this.props.children}
-                </main>
-            </Aux2>
-        )
-    }
+    return(
+        <Aux2>
+            <Toolbar 
+                isAuth={props.isAuthenticated}
+                opened={sideDrawerToggleHandler}/>
+            <SideDrawer isAuth={props.isAuthenticated} open={sideDrawerisVisible} closed={sideDrawerClosedHandler}/>
+            <main className={classes.Content}>
+                {props.children}
+            </main>
+        </Aux2>
+    )
+
 }
 
 const mapStateToProps = state => {
@@ -41,4 +36,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(Layout);
+export default connect(mapStateToProps)(layout);
